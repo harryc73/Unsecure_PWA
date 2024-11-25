@@ -26,6 +26,8 @@ def addFeedback():
         return render_template("/success.html", state=True, value="Back")
     else: #exceptions not handled properly, security risk as can be exploited
         dbHandler.listFeedback()
+        if ValueError:
+            return render_template("/success.html", error=True, value="Back")
         return render_template("/success.html", state=True, value="Back")
 
 # Function to sanitise text manually
@@ -37,6 +39,7 @@ def replace_characters(input_string: str) -> str:
         if char_list[i] in to_replace:
             index = to_replace.index(char_list[i])
             char_list[i] = replacements[index]
+    return "".join(char_list)
 
 def check_feedback(feedback: str) -> bytes:
     if not issubclass(type(feedback), str):
@@ -51,7 +54,7 @@ def check_feedback(feedback: str) -> bytes:
         raise ValueError("must contain at least 4 letters")
     if re.search(r"[@$!%*?&]", feedback):
         raise ValueError("does contain one of '@$!%*?&' special characters")
-    return password.encode()
+    return feedback
 
 @app.route("/signup.html", methods=["POST", "GET", "PUT", "PATCH", "DELETE"])
 def signup():
