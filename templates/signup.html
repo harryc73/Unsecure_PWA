@@ -8,9 +8,12 @@
     <div class="input__wrapper">
         <input type="password" name="password" placeholder="Password" class="input__field">
     </div>
-    <div class="input__wrapper">
-        <input type="dateOfBirth" name="dob" placeholder="Date of Birth" class="input__field">
-    </div>
+      {% if error %}
+        <div>
+          <h2>Your password isn't right</h2>
+          <p>{{ password }}</p>
+        </div>
+      {% endif %}
     <div class="input__wrapper">
         <button type="submit" class="btn">Submit</button>
     </div>

@@ -3,12 +3,12 @@ import time
 import random
 
 
-def insertUser(username, password, DoB):
+def insertUser(username, password):
     con = sql.connect("database_files/database.db")
     cur = con.cursor()
     cur.execute(
-        "INSERT INTO users (username,password,dateOfBirth) VALUES (?,?,?)",
-        (username, password, DoB), # no function to encrypt password or exception handling/sanatisaion 
+        "INSERT INTO users (username,password) VALUES (?,?)",
+        (username, password), # no function to encrypt password or exception handling/sanatisaion 
     )
     con.commit()
     con.close()
