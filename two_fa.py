@@ -20,9 +20,9 @@ def get_2fa():
     qrcode.make(uri).save("static/images/2fa_pics/newCode.png")
     return key
 
-def check_2fa(code: str):
+def check_2fa(key: str):
     while True:
-        if code == request.form["code"]:
+        if key == request.form["code"]:
             return True
         else:
             return False

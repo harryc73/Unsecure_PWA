@@ -47,10 +47,8 @@ def hash(password: str) -> str:
     hashed_password = bcrypt.hashpw(password=encoded_password, salt=salt)
     return hashed_password.decode()
 
-
-
-def main():
-    print(hash("I Am All The Jedi"))
+def salt() -> str:
+    return bcrypt.gensalt().decode()
 
 if __name__ == "__main__":
-    main()
+    app.run(debug=True)
